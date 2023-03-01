@@ -40,20 +40,41 @@
     var trace1 = {
     x: datosX,
     y: datosY,
+    mode: 'lines+markers',
     type: 'scatter',
     name: 'Tarde'
     };
 
     var layout = {
-        title: 'Humedad - Tarde',
+        title:{
+			text: 'HUMEDAD - TARDE',
+			font:{
+				family: 'Baskerville',
+				size: 25,
+				color: '#af0b19',
+				bold: true,
+			}
+		},
         xaxis: {
-            title: 'FECHAS',
+            title: {
+				text:'FECHAS',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			},
             zeroline: true,
             showgrid: true,
             showline: true
         },
         yaxis: {
-            title: 'HUMEDAD [ % ]'
+            title:{
+				text: 'HUMEDAD [ % ]',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			} 
         }
     }
 

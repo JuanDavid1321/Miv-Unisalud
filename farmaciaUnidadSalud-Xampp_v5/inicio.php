@@ -103,7 +103,6 @@
           </div>
         </div>
       </section>
-
       <section class="secccionMapaGoogleUnidadDeSalud">
         <h1 style="color: #af0b19; font-weight: bold; text-transform: uppercase">
           Ubicación de la unidad de salud

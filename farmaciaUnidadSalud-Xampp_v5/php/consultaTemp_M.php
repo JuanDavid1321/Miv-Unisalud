@@ -1,13 +1,26 @@
-<div id="graficaLineal"></div>
+<!-- Función para pasar el formato json -->
+<script type="text/javascript">
+	function crearCadenaLineal(json){
+		var parsed = JSON.parse(json);
+		var arr = [];
+		for(var x in parsed){
+			arr.push(parsed[x]);
+		}
+		return arr;
+	}
+</script>
 
 <?php
 	require 'dbConnection.php'; 
 
+	$mesSeleccionado = $_POST['mes'];
+
 	$sql = "SELECT fecha,temp,hora as count 
-			from registros WHERE hora between '09:00:00' and '10:59:59'
+			from registros WHERE MONTH(fecha) = '$mesSeleccionado' AND hora between '09:00:00' and '10:59:59'
 			GROUP BY DAY(fecha) ORDER BY fecha "; 
 
 	$result = mysqli_query($conn,$sql);
+
 
 	$valoresY = array();//montos
 	$valoresX = array();//fechas
@@ -22,18 +35,6 @@
 	$datosY = json_encode($valoresY);
 ?>
 
-
-<script type="text/javascript">
-	function crearCadenaLineal(json){
-		var parsed = JSON.parse(json);
-		var arr = [];
-		for(var x in parsed){
-			arr.push(parsed[x]);
-		}
-		return arr;
-	}
-</script>
-
 <script type="text/javascript">
 
 	datosX = crearCadenaLineal('<?php echo $datosX ?>');
@@ -45,26 +46,45 @@
 	    mode: 'lines+markers',
 	    name: 'Mañana',
 		line: {
-			color: 'ff0000',
 			width: 2
 		}
 	};
     
 
     var layout = {
-        title: 'Temperatura - Mañana',
+        title:{
+			text: 'TEMPERATURA - MAÑANA',
+			font:{
+				family: 'Baskerville',
+				size: 25,
+				color: '#af0b19',
+				bold: true,
+			}
+		},
         xaxis: {
-            title: 'FECHAS',
+            title: {
+				text:'FECHAS',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			},
             zeroline: true,
             showgrid: true,
             showline: true
         },
         yaxis: {
-            title: 'TEMPERATURA [ °C ]'
+            title:{
+				text: 'TEMPERATURA [ °C ]',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			} 
         }
     }
 
     var data = [trace1];
 
-	Plotly.newPlot('graficaLineal', data,layout);
+	Plotly.newPlot('cargaLineal', data,layout);
 </script>

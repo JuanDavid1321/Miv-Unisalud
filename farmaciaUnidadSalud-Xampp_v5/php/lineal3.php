@@ -43,21 +43,41 @@
 	    mode: 'lines+markers',
 	    name: 'Tarde',
 		line: {
-			color: 'ff0000',
+			// color: 'ff0000',
 			width: 2
 		}
 	};
 
     var layout = {
-        title: 'Temperatura - Tarde',
+        title:{
+			text: 'TEMPERATURA - TARDE',
+			font:{
+				family: 'Baskerville',
+				size: 25,
+				color: '#af0b19',
+				bold: true,
+			}
+		},
         xaxis: {
-            title: 'FECHAS',
+            title: {
+				text:'FECHAS',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			},
             zeroline: true,
             showgrid: true,
             showline: true
         },
         yaxis: {
-            title: 'TEMPERATURA [ °C ]'
+            title:{
+				text: 'TEMPERATURA [ °C ]',
+				font:{
+					family: 'Baskerville',	
+					color: '#af0b19',
+				}
+			} 
         }
     }
 
