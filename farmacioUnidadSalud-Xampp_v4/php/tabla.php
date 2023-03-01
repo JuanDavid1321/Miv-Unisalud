@@ -7,7 +7,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="../librerias/bootstrap/css/bootstrap.css"/>
         
-        <link rel="stylesheet" href="../css/estilos.css">    
+        <link rel="stylesheet" href="estilos.css">    
          <title> ULTIMOS datos medidos de TEMPERATURA y HUMEDAD dispositivo IoT </title>
         <meta http-equiv="refresh" content="" />
         

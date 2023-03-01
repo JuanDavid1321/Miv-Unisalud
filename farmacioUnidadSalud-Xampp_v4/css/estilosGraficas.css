@@ -1,6 +1,7 @@
 body {
   font-family: "Baskerville", sans-serif;
   font-family: "Baskerville BT", sans-serif;
+
   margin: 0;
 }
 header {
@@ -74,4 +75,60 @@ header {
 
 .menu ul li a#seleccionActual {
   background-color: #1aa9eb;
+}
+
+.paraSeleccionMes {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #af0b19;
+}
+
+.selectores {
+  margin: 20px auto 40px auto;
+  border: 1px solid #d9d9d9;
+  height: 30px;
+  overflow: hidden;
+  width: 230px;
+  position: relative;
+}
+#selectorMes {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 30px;
+  padding: 5px;
+  width: 250px;
+}
+#selectorMes:focus {
+  outline: none;
+}
+
+.selectores::after {
+  content: "\025be";
+  display: table-cell;
+  padding-top: 7px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  background-color: #d9d9d9;
+  position: absolute;
+  top: 0;
+  right: 0px;
+  pointer-events: none;
+}
+
+.separador {
+  height: 50px;
+}
+
+.graficasCentradas {
+  text-align: center;
+  width: auto;
+}
+
+.graficasCentradas #cargaLineal {
+  width: 600px;
+  margin: 0 auto;
 }
