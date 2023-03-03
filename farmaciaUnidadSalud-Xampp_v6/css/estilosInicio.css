@@ -122,11 +122,7 @@ main {
   color: white;
   align-items: center;
 }
-#cardGraficas img {
-  height: 300px;
-  width: 300px;
-  padding: 40px;
-}
+
 
 .secccionMapaGoogleUnidadDeSalud {
   margin: 0;
