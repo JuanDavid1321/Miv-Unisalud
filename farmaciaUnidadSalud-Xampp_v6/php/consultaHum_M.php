@@ -13,7 +13,7 @@
 <?php
 	require 'dbConnection.php'; 
 
-	$mesSeleccionado = $_POST['mes'];
+	$mesSeleccionado = (isset($_POST['mes'])) ? $_POST['mes'] : 1;
 
 	$sql = "SELECT fecha,hum,hora as count 
 			from registros WHERE MONTH(fecha) = '$mesSeleccionado' AND hora between '09:00:00' and '10:59:59'
@@ -60,6 +60,9 @@
 			}
 		},
 		xaxis: {
+			type: 'date',
+			tickmode: 'day',
+			dtick: 86400000, // Un día en milisegundos
             title: {
 				text:'FECHAS',
 				font:{

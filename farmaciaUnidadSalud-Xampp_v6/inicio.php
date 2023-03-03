@@ -65,14 +65,14 @@
     <main>
       <section class="seccionTitulo">
         <br />
-        <h1 style="color: #af0b19; font-weight: bold; text-transform: uppercase">
+        <h1 style="color: #af0b19; font-weight: bold; text-transform: uppercase; margin-top: -30px">
           ¿Qué tiene a su disposición?
         </h1>
         <br />
         <!--<hr style="width: 80%; margin: auto; color: #AF0B19;">-->
       </section>
-      <section class="seccionTarjetasInformativas">
-        <div id="cardGraficas" class="card" style="width: 20rem">
+      <section class="seccionTarjetasInformativas" style="margin-top: -20px; margin-bottom: 30px;">
+        <div id="cardGraficas" class="card" style="width: 20rem; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
           <img
             src="images/iconoGraficasLineales.png"
             class="card-img-top"
@@ -103,7 +103,7 @@
           </div>
         </div>
       </section>
-      <section class="secccionMapaGoogleUnidadDeSalud">
+      <section class="secccionMapaGoogleUnidadDeSalud" style="background-color: #edf2f4; padding: 30px; border-top: 2px solid grey;">
         <h1 style="color: #af0b19; font-weight: bold; text-transform: uppercase">
           Ubicación de la unidad de salud
         </h1>
@@ -114,7 +114,7 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.196599870825!2d-76.60580538573296!3d2.441469998220835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3003058216e8fb%3A0xfa501d4669be3eed!2sUnidad%20de%20Salud!5e0!3m2!1ses!2sco!4v1665679858222!5m2!1ses!2sco"
           width="600"
           height="450"
-          style="padding-top: 50px"
+          style="padding-top: 50px; border-radius: 0;"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"

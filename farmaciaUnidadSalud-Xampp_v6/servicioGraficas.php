@@ -15,11 +15,13 @@
     <script src="librerias/plotly-2.14.0.min.js"></script>
     <script src="https://kit.fontawesome.com/00121ead02.js" crossorigin="anonymous"></script>
     <link href="http://fonts.cdnfonts.com/css/baskerville" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
     <link rel="stylesheet" href="css/estilosGraficas.css" />
     <style>
       .contenedor-mes{
-        background-color:#edf2f4; border: 3px solid grey; border-radius: 20px; margin-top: -8px; margin-left: 500px; margin-right: 500px; padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #1F77B4
+        background-color:#edf2f4; border: 3px solid #1F77B4; border-radius: 20px; margin-top: -8px; margin-left: 300px; margin-right: 300px; padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: center; align-items: center; font-size: 20px; color: #1F77B4
       }
       .etiqueta-select{
         font-weight: bold; margin-right: 20px;
@@ -28,11 +30,18 @@
         border-color: #1F77B4; color: #1F77B4; border-radius: 20px; font-weight: bold; border-width: 3px; padding: 3px 15px;
       }
       .consulta{
-        background-color: #edf2f4; color:#1F77B4; margin-left: 10px; border-radius: 20px; font-weight: 800; border: 3px solid #edf2f4; outline: none; padding: 2px 15px;
+        background-color: #edf2f4; color:#1F77B4; margin-left: 5px; margin-right: 200px; border-radius: 20px; font-weight: 800; border: 3px solid #edf2f4; outline: none; padding: 2px 15px;
       }
       .consulta:hover{
         background-color: #1F77B4; color: white; 
       }
+      .boton-reporte{
+        border: 2px solid #af0b19; background-color: white; color: #af0b19; font-weight: bold; border-radius: 20px; padding: 2px 15px;
+      }
+      .boton-reporte:hover{
+        background-color: #af0b19; color: white;
+      }
+
     </style>
   </head>
   <body>
@@ -78,7 +87,6 @@
         <form action="servicioGraficas.php" method="POST">
             <label for="mes-selecionado" class="etiqueta-select">Seleccione un mes: </label>
             <select name="mes" class="selector-mes" id="mes-selecionado" >
-              <option></option>
               <option value="1">Enero</option>
               <option value="2">Febrero</option>
               <option value="3">Marzo</option>
@@ -95,32 +103,33 @@
             <button id="consultar" type="submit" class="consulta">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
+            
           </form>
+          <button class="boton-reporte" id="descargar-pdf"><i class="fa-solid fa-download"></i> Reporte</button>
       </section>
 
-      <section class="cont" style="display: flex; justify-content: space-between; margin-top: -20px;">
-        <div id="cardTablas" class="card" style="width: 100%;  border: 2px solid #af0b19fd; background-color: #edf2f4; margin: 50px 25px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
-            <div id="cargaLineal" style="margin: 20px;"></div>
-            
+      <section class="cont" style="margin-top: -20px;">
+        <div id="contenido-div1" class="card" style="border: 2px solid grey; background-color: #edf2f4; margin: 50px 25px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+          <div id="cargaLineal" style="margin: 20px;" class="mi-grafica"></div>  
         </div>
-        <div id="cardTablas" class="card" style="width: 100%; border: 2px solid #af0b19fd; background-color: #edf2f4; margin: 50px 25px;  border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
-            <div id="cargaLineal2" style="margin: 20px;"></div>
-            
+
+        <div id="contenido-div2" class="card" style="border: 2px solid grey; background-color: #edf2f4; margin: 50px 25px;  border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+          <div id="cargaLineal2" style="margin: 20px; object-fit: cover;" class="mi-grafica"></div>  
         </div>
-      </section>
-      <section style="display: flex; justify-content: space-between;">
-        <div id="cardTablas" class="card" style="width: 100%;  border: 2px solid #af0b19fd; background-color: #edf2f4; margin: 50px 25px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
-            <div id="cargaLineal3" style="margin: 20px;"></div>
-            
+
+        <div id="contenido-div3" class="card" style="border: 2px solid grey; background-color: #edf2f4; margin: 50px 25px; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+          <div id="cargaLineal3" style="margin: 20px; object-fit: cover;" class="mi-grafica"></div>  
         </div>
-        <div id="cardTablas" class="card" style="width: 100%; border: 2px solid #af0b19fd; background-color: #edf2f4; margin: 50px 25px;  border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
-            <div id="cargaLineal4" style="margin: 20px;"></div>
-            
+
+        <div id="contenido-div4" class="card" style="border: 2px solid grey; background-color: #edf2f4; margin: 50px 25px;  border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;">
+          <div id="cargaLineal4" style="margin: 20px; object-fit: contain;" class="mi-grafica"></div>
         </div>
-      </section>
     </main>
   </body>
 </html>
+
+<script src="js/pdf.js"></script>
+
 
 <script type="text/javascript">
   $(document).ready(function () {

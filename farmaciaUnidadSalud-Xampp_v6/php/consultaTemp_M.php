@@ -13,7 +13,7 @@
 <?php
 	require 'dbConnection.php'; 
 
-	$mesSeleccionado = $_POST['mes'];
+	$mesSeleccionado = (isset($_POST['mes'])) ? $_POST['mes'] : 1;
 
 	$sql = "SELECT fecha,temp,hora as count 
 			from registros WHERE MONTH(fecha) = '$mesSeleccionado' AND hora between '09:00:00' and '10:59:59'
@@ -40,6 +40,12 @@
 	datosX = crearCadenaLineal('<?php echo $datosX ?>');
 	datosY = crearCadenaLineal('<?php echo $datosY ?>');
  
+	var textValues = [];
+
+	for (var i = 0; i < datosX.length; i++) {
+		textValues.push('x=' + datosX[i]);
+	}
+
 	var trace1 = {
 		x: datosX,
 		y: datosY,
@@ -47,7 +53,7 @@
 	    name: 'Mañana',
 		line: {
 			width: 2
-		}
+		},
 	};
     
 
@@ -62,6 +68,9 @@
 			}
 		},
         xaxis: {
+			type: 'date',
+			tickmode: 'day',
+			dtick: 86400000, // Un día en milisegundos
             title: {
 				text:'FECHAS',
 				font:{
@@ -69,7 +78,7 @@
 					color: '#af0b19',
 				}
 			},
-            zeroline: true,
+			ticktext: textValues,
             showgrid: true,
             showline: true
         },
